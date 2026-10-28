@@ -1,0 +1,6 @@
+.git
+.gitignore
+terraform/
+node_modules/
+npm-debug.log
+README.md

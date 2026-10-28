@@ -1,0 +1,7 @@
+aws_region            = "us-east-1"
+project_name          = "aws-cicd-portfolio"
+github_owner          = "YOUR_GITHUB_USERNAME"
+github_repo           = "aws-ecs-cicd-portfolio"
+github_branch         = "main"
+github_connection_arn = "arn:aws:codeconnections:us-east-1:123456789012:connection/REPLACE-ME"
+app_port              = 3000

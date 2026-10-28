@@ -1,0 +1,35 @@
+version: 0.2
+
+env:
+  variables:
+    AWS_DEFAULT_REGION: us-east-1
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+    commands:
+      - node --version
+      - npm --version
+  pre_build:
+    commands:
+      - echo "Running application tests"
+      - npm test
+      - ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+      - REPOSITORY_URI="${ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${ECR_REPOSITORY}"
+      - COMMIT_HASH=$(echo "${CODEBUILD_RESOLVED_SOURCE_VERSION}" | cut -c 1-7)
+      - IMAGE_TAG=${COMMIT_HASH:=latest}
+      - aws ecr get-login-password --region "${AWS_DEFAULT_REGION}" | docker login --username AWS --password-stdin "${ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
+  build:
+    commands:
+      - echo "Building container image ${IMAGE_TAG}"
+      - docker build --build-arg APP_VERSION="${IMAGE_TAG}" -t "${REPOSITORY_URI}:${IMAGE_TAG}" .
+  post_build:
+    commands:
+      - docker push "${REPOSITORY_URI}:${IMAGE_TAG}"
+      - printf '[{"name":"sample-app","imageUri":"%s"}]' "${REPOSITORY_URI}:${IMAGE_TAG}" > imagedefinitions.json
+      - cat imagedefinitions.json
+
+artifacts:
+  files:
+    - imagedefinitions.json

@@ -1,0 +1,14 @@
+{
+  "name": "aws-ecs-cicd-sample",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Small sample app for an AWS CodePipeline to ECS Fargate portfolio project",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
