@@ -30,7 +30,7 @@ small{color:#5c687a}code{background:#f1f5f9;padding:3px 7px;border-radius:6px}
 <p>Pipeline: <strong>GitHub → CodePipeline → CodeBuild → ECR → ECS Fargate</strong></p>
 <p>Version: <code>${version}</code></p>
 <p><a href="/health">Health check</a> · <a href="/version">Version endpoint</a></p>
-<small>Portfolio learning project — not for production use.</small></main></body></html>`);
+<small>Portfolio learning project — not for production usage</small></main></body></html>`);
   }
 
   res.writeHead(404, { "content-type": "application/json" });
