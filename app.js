@@ -26,7 +26,7 @@ main{border:1px solid #dbe2ea;border-radius:18px;padding:32px}
 small{color:#5c687a}code{background:#f1f5f9;padding:3px 7px;border-radius:6px}
 </style></head>
 <body><main><h1>It works! 🚀</h1>
-<p>This sample app was deployed using an automated AWS CI/CD pipeline.</p>
+<p>This sample app was deployed by MUSTY using an automated AWS CI/CD pipeline.</p>
 <p>Pipeline: <strong>GitHub → CodePipeline → CodeBuild → ECR → ECS Fargate</strong></p>
 <p>Version: <code>${version}</code></p>
 <p><a href="/health">Health check</a> · <a href="/version">Version endpoint</a></p>
